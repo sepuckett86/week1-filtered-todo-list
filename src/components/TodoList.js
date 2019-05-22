@@ -6,13 +6,13 @@ class TodoList extends Component {
         const dom = this.renderDOM();
 
         const todos = this.props.todos;
+        const onRemove = this.props.onRemove;
 
         todos
-            .map(todo => new TodoItem({ todo }))
+            .map(todo => new TodoItem({ todo, onRemove }))
             .map(todoItemComponent => todoItemComponent.renderDOM())
             .forEach(todoItemComponentDOM => dom.appendChild(todoItemComponentDOM));
 
-        
         return dom;
     }
 

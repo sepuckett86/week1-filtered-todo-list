@@ -13,9 +13,10 @@ test('generate list item html with checked', assert => {
     const expected = /*html*/ `
         <li>
             <label>
-                ${todo.task}
                 <input type="checkbox" name="todo" checked>
+                ${todo.task} 
             </label>
+            <button>X</button>
         </li>
     `;
     // Act
@@ -36,9 +37,10 @@ test('generate list item html without checked', assert => {
     const expected = /*html*/ `
         <li>
             <label>
-                ${todo.task}
                 <input type="checkbox" name="todo">
+                ${todo.task} 
             </label>
+            <button>X</button>
         </li>
     `;
     // Act

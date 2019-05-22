@@ -28,7 +28,14 @@ class App extends Component {
         main.appendChild(addTodoComponentDOM);
 
         // TodoList
-        const todoListComponent = new TodoList({ todos });
+        const todoListComponent = new TodoList({ 
+            todos,
+            onRemove: (todoToRemove) => {
+                const index = todos.indexOf(todoToRemove);
+                todos.splice(index, 1);
+                todoListComponent.update({ todos });
+            }
+        });
         const todoListComponentDOM = todoListComponent.render();
         main.appendChild(todoListComponentDOM);
 
