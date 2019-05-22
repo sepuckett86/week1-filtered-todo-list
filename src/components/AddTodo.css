@@ -3,11 +3,16 @@
 }
 
 #addTodo input {
-    width: 300px;
+    width: 230px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 16px;
 }
 
 #addTodo label {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#addTodo button {
+    font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
 }

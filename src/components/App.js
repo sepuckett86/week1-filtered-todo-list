@@ -17,7 +17,13 @@ class App extends Component {
         dom.insertBefore(headerComponentDOM, main);
 
         // AddTodo
-        const addTodoComponent = new AddTodo();
+        const addTodoComponent = new AddTodo({
+            onAdd: (todo) => {
+                todos.unshift(todo);
+                // update the component with the data
+                todoListComponent.update({ todos });
+            }
+        });
         const addTodoComponentDOM = addTodoComponent.render();
         main.appendChild(addTodoComponentDOM);
 
