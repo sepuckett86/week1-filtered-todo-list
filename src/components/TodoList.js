@@ -10,7 +10,7 @@ class TodoList extends Component {
 
         todos
             .map(todo => new TodoItem({ todo, onRemove }))
-            .map(todoItemComponent => todoItemComponent.renderDOM())
+            .map(todoItemComponent => todoItemComponent.render())
             .forEach(todoItemComponentDOM => dom.appendChild(todoItemComponentDOM));
 
         return dom;
