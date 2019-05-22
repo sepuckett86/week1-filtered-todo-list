@@ -1,3 +1,5 @@
+import todos from '../../data/todos.js';
+
 import Component from './Component.js';
 import Header from './Header.js';
 import TodoList from './TodoList.js';
@@ -10,12 +12,12 @@ class App extends Component {
 
         // Header
         const headerComponent = new Header();
-        const headerComponentDOM = headerComponent.renderDOM();
+        const headerComponentDOM = headerComponent.render();
         dom.insertBefore(headerComponentDOM, main);
 
         // To do List
-        const todoListComponent = new TodoList();
-        const todoListComponentDOM = todoListComponent.renderDOM();
+        const todoListComponent = new TodoList({ todos });
+        const todoListComponentDOM = todoListComponent.render();
         main.appendChild(todoListComponentDOM);
 
         return dom;
