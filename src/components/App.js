@@ -34,6 +34,11 @@ class App extends Component {
                 const index = todos.indexOf(todoToRemove);
                 todos.splice(index, 1);
                 todoListComponent.update({ todos });
+            },
+            onCheck: (todoToCheck) => {
+                const index = todos.indexOf(todoToCheck);
+                todos[index].completed = !todos[index].completed;
+                todoListComponent.update({ todos });
             }
         });
         const todoListComponentDOM = todoListComponent.render();

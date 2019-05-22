@@ -14,7 +14,7 @@ test('generate list item html with checked', assert => {
         <li>
             <label>
                 <input type="checkbox" name="todo" checked>
-                ${todo.task} 
+                <span class="checked">${todo.task}</span>
             </label>
             <button>X</button>
         </li>
@@ -38,7 +38,7 @@ test('generate list item html without checked', assert => {
         <li>
             <label>
                 <input type="checkbox" name="todo">
-                ${todo.task} 
+                <span >${todo.task}</span>
             </label>
             <button>X</button>
         </li>
