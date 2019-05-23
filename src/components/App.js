@@ -9,6 +9,26 @@ class App extends Component {
     render() {
         const dom = this.renderDOM();
 
+        // Methods to pass as Props
+        const onAdd = (todo) => {
+            todos.unshift(todo);
+            // update the component with the data
+            todoListComponent.update({ todos });
+        };
+
+        const onRemove = (todoToRemove) => {
+            const index = todos.indexOf(todoToRemove);
+            todos.splice(index, 1);
+            todoListComponent.update({ todos });
+        };
+
+        const onCheck = (todoToCheck) => {
+            const index = todos.indexOf(todoToCheck);
+            todos[index].completed = !todos[index].completed;
+            todoListComponent.update({ todos });
+        };
+
+        // Pull DOM elements
         const main = dom.querySelector('main');
 
         // Header
@@ -18,11 +38,7 @@ class App extends Component {
 
         // AddTodo
         const addTodoComponent = new AddTodo({
-            onAdd: (todo) => {
-                todos.unshift(todo);
-                // update the component with the data
-                todoListComponent.update({ todos });
-            }
+            onAdd
         });
         const addTodoComponentDOM = addTodoComponent.render();
         main.appendChild(addTodoComponentDOM);
@@ -30,16 +46,8 @@ class App extends Component {
         // TodoList
         const todoListComponent = new TodoList({ 
             todos,
-            onRemove: (todoToRemove) => {
-                const index = todos.indexOf(todoToRemove);
-                todos.splice(index, 1);
-                todoListComponent.update({ todos });
-            },
-            onCheck: (todoToCheck) => {
-                const index = todos.indexOf(todoToCheck);
-                todos[index].completed = !todos[index].completed;
-                todoListComponent.update({ todos });
-            }
+            onRemove,
+            onCheck
         });
         const todoListComponentDOM = todoListComponent.render();
         main.appendChild(todoListComponentDOM);
@@ -49,8 +57,7 @@ class App extends Component {
     renderTemplate() {
         return /*html*/ `
             <div>
-                <main>
-                </main>
+                <main></main>
             </div>
         `;
     }
