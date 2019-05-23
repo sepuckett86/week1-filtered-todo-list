@@ -8,7 +8,6 @@ import TodoList from './TodoList.js';
 class App extends Component {
     render() {
         const dom = this.renderDOM();
-
         // Methods to pass as Props
         const onAdd = (todo) => {
             todos.unshift(todo);
