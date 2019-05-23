@@ -1,10 +1,11 @@
 const api = {
+    storage: localStorage,
     saveTodos(todos) {
         const json = JSON.stringify(todos);
-        localStorage.setItem('todos', json);
+        api.storage.setItem('todos', json);
     },
     getTodos() {
-        const json = localStorage.getItem('todos');
+        const json = api.storage.getItem('todos');
         const todos = JSON.parse(json);
         return todos;
     }

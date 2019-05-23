@@ -4,6 +4,12 @@ const test = QUnit.test;
 
 QUnit.module('api');
 
+api.storage = sessionStorage;
+
+QUnit.testStart(() => {
+    sessionStorage.clear();
+});
+
 test('round trip of todos data', assert => {
     // Arrange
     const todos = [
