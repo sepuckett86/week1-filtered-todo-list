@@ -5,10 +5,13 @@ import Component from './Component.js';
 import Header from './Header.js';
 import AddTodo from './AddTodo.js';
 import TodoList from './TodoList.js';
+import Filter from './Filter.js';
 
 class App extends Component {
     render() {
         const dom = this.renderDOM();
+
+        // Check whether there are todos in LocalStorage
         let todos;
         const todosInLocalStorage = api.getTodos();
         if(todosInLocalStorage) {
@@ -16,6 +19,7 @@ class App extends Component {
         } else {
             todos = todosData;
         }
+
         // Methods to pass as Props
         const onAdd = (todo) => {
             todos.unshift(todo);
@@ -53,6 +57,11 @@ class App extends Component {
         const addTodoComponentDOM = addTodoComponent.render();
         main.appendChild(addTodoComponentDOM);
 
+        // Filter
+        const filterComponent = new Filter();
+        const filterComponentDOM = filterComponent.render();
+        main.appendChild(filterComponentDOM);
+        
         // TodoList
         const todoListComponent = new TodoList({ 
             todos,
