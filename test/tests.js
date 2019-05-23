@@ -5,3 +5,4 @@ import './html-equal.js';
 import './html-to-DOM.test.js';
 import './TodoItem.test.js';
 import './api.test.js';
+import './filter-todos.test.js';
