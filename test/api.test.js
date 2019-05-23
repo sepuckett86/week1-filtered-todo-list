@@ -1,8 +1,10 @@
+import api from '../src/services/api.js';
+
 const test = QUnit.test;
 
 QUnit.module('api');
 
-test('round trip of todos data', assert =>  {
+test('round trip of todos data', assert => {
     // Arrange
     const todos = [
         {
@@ -23,5 +25,5 @@ test('round trip of todos data', assert =>  {
     api.saveTodos(todos);
     const actual = api.getTodos();
     // Assert
-    assert.equal(actual, expected);
+    assert.deepEqual(actual, expected);
 });
