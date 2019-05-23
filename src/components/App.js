@@ -1,4 +1,5 @@
 import todosData from '../../data/todos.js';
+import filterTodos from '../filter-todos.js';
 import api from '../services/api.js';
 
 import Component from './Component.js';
@@ -42,6 +43,11 @@ class App extends Component {
             api.saveTodos(todos);
         };
 
+        const onFilter = (filter) => {
+            const filtered = filterTodos(filter, todos);
+            todoListComponent.update({ todos: filtered });
+        };
+
         // Pull DOM elements
         const main = dom.querySelector('main');
 
@@ -58,7 +64,10 @@ class App extends Component {
         main.appendChild(addTodoComponentDOM);
 
         // Filter
-        const filterComponent = new Filter();
+        const filterComponent = new Filter({
+            todos,
+            onFilter
+        });
         const filterComponentDOM = filterComponent.render();
         main.appendChild(filterComponentDOM);
         

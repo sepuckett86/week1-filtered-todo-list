@@ -1,3 +1,5 @@
+import filterTodos from '../src/filter-todos.js';
+
 const test = QUnit.test;
 
 QUnit.module('filter-todos');
@@ -16,18 +18,6 @@ const todos = [
         completed: true
     }
 ];
-
-function filterTodos(filter, todos) {
-    Object.keys(filter).forEach(key => {
-        filter[key] = filter[key].toLowerCase();
-    });
-    const filteredTodos = todos.filter(todo => {
-        const lowerCaseTask = todo.task.toLowerCase();
-        const hasText = lowerCaseTask.includes(filter.text);
-        return hasText;
-    });
-    return filteredTodos;
-}
 
 test('returns todos containing filter text', assert => {
     // Arrange
