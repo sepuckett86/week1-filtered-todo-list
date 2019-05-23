@@ -35,6 +35,32 @@ test('returns todos containing filter text', assert => {
     assert.deepEqual(actual, expected);
 });
 
+test('no string returns all', assert => {
+    // Arrange
+    const filter = {
+        text: ''
+    };
+    const expected = [
+        {
+            task: 'Go for a walk in the forest',
+            completed: true
+        },
+        {
+            task: 'Compose a song',
+            completed: false
+        },
+        {
+            task: 'Eat lunch',
+            completed: true
+        }
+    ];
+    // Act
+    const actual = filterTodos(filter, todos);
+
+    // Assert
+    assert.deepEqual(actual, expected);
+});
+
 test('no case sensitivity for filter', assert => {
     // Arrange
     const filter = {
