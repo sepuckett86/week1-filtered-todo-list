@@ -36,7 +36,7 @@ class App extends Component {
             api.saveTodos(todos);
         };
 
-        const onCheck = (todoToCheck) => {
+        const onDone = (todoToCheck) => {
             const index = todos.indexOf(todoToCheck);
             todos[index].completed = !todos[index].completed;
             todoListComponent.update({ todos });
@@ -75,7 +75,7 @@ class App extends Component {
         const todoListComponent = new TodoList({ 
             todos,
             onRemove,
-            onCheck
+            onDone
         });
         const todoListComponentDOM = todoListComponent.render();
         main.appendChild(todoListComponentDOM);

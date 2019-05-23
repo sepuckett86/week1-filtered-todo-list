@@ -7,7 +7,7 @@ class TodoItem extends Component {
         const input = dom.querySelector('input');
 
         const onRemove = this.props.onRemove;
-        const onCheck = this.props.onCheck;
+        const onDone = this.props.onDone;
         const todo = this.props.todo;
 
         button.addEventListener('click', () => {
@@ -15,7 +15,7 @@ class TodoItem extends Component {
         });
 
         input.addEventListener('change', () => {
-            onCheck(todo);
+            onDone(todo);
         });
 
         return dom;
