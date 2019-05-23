@@ -17,6 +17,14 @@ const todos = [
     }
 ];
 
+function filterTodos(filter) {
+    const filteredTodos = todos.filter(todo => {
+        const hasText = todo.task.includes(filter.text);
+        return hasText;
+    })
+    return filteredTodos;
+}
+
 test('returns todos containing filter text', assert => {
     // Arrange
     const filter = {
@@ -30,5 +38,5 @@ test('returns todos containing filter text', assert => {
     const actual = filterTodos(filter);
 
     // Assert
-    assert.equal(actual, expected);
+    assert.deepEqual(actual, expected);
 });
