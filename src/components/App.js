@@ -27,6 +27,7 @@ class App extends Component {
             // update the component with the data
             todoListComponent.update({ todos });
             api.saveTodos(todos);
+            filterComponent.update();
         };
 
         const onRemove = (todoToRemove) => {
@@ -34,6 +35,7 @@ class App extends Component {
             todos.splice(index, 1);
             todoListComponent.update({ todos });
             api.saveTodos(todos);
+
         };
 
         const onDone = (todoToCheck) => {
@@ -41,6 +43,7 @@ class App extends Component {
             todos[index].completed = !todos[index].completed;
             todoListComponent.update({ todos });
             api.saveTodos(todos);
+            filterComponent.update();
         };
 
         const onFilter = (filter) => {

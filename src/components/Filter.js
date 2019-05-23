@@ -16,6 +16,9 @@ class Filter extends Component {
             });
         });
 
+        form.reset();
+        document.activeElement.blur();
+
         return form;
     }
     renderTemplate() {
