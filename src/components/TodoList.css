@@ -1,0 +1,7 @@
+li {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.checked {
+    text-decoration: line-through;
+}

@@ -1,45 +1,53 @@
-import todoTemplate from '../src/todo-template.js';
-
+import TodoItem from '../src/components/TodoItem.js';
 const test = QUnit.test;
 
-QUnit.module('todo template');
+QUnit.module('TodoItem');
 
-test('makes html for to-do with checked', assert => {
+test('generate list item html with checked', assert => {
     // Arrange
     const todo = {
         task: 'Go for a walk in the forest',
         completed: true
     };
-    const expected = /*html*/`
+    
+    const expected = /*html*/ `
         <li>
             <label>
-                Go for a walk in the forest
                 <input type="checkbox" name="todo" checked>
+                ${todo.task} 
             </label>
+            <button>X</button>
         </li>
     `;
     // Act
-    const html = todoTemplate(todo);
+
+    const todoItemComponent = new TodoItem({ todo });
+    const html = todoItemComponent.renderTemplate();
+
     // Assert
     assert.htmlEqual(html, expected);
 });
 
-test('makes html for to-do without checked', assert => {
+test('generate list item html without checked', assert => {
     // Arrange
     const todo = {
         task: 'Go for a walk in the forest',
         completed: false
     };
-    const expected = /*html*/`
+    const expected = /*html*/ `
         <li>
             <label>
-                Go for a walk in the forest
                 <input type="checkbox" name="todo">
+                ${todo.task} 
             </label>
+            <button>X</button>
         </li>
     `;
     // Act
-    const html = todoTemplate(todo);
+
+    const todoItemComponent = new TodoItem({ todo });
+    const html = todoItemComponent.renderTemplate();
+
     // Assert
     assert.htmlEqual(html, expected);
 });
