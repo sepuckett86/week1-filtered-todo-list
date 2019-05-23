@@ -19,8 +19,17 @@ class Filter extends Component {
     renderTemplate() {
         return /*html*/ `
             <div id="filter">
-                <label>Filter: 
-                    <input name="filter">
+                <label id="text-filter">Filter: 
+                    <input name="filter" type="text">
+                </label>
+                <label>All
+                    <input name="radio" type="radio" value="all" checked>
+                </label>
+                <label>Completed
+                    <input name="radio" type="radio" value="done">
+                </label>
+                <label>Not Done
+                    <input name="radio" type="radio" value="not-done">
                 </label>
             </div>
         `;
