@@ -26,6 +26,7 @@ class App extends Component {
             todos = todosData;
         }
         this.state.todos = todos;
+        api.saveTodos(todos);
 
         // Methods to pass as Props
         const onAdd = (todo) => {
