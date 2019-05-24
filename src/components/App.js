@@ -8,10 +8,15 @@ import AddTodo from './AddTodo.js';
 import TodoList from './TodoList.js';
 import Filter from './Filter.js';
 
+const defaultFilter = {
+    text: '',
+    radio: 'all'
+};
+
 class App extends Component {
     render() {
         const dom = this.renderDOM();
-
+        this.state.filter = defaultFilter;
         // Check whether there are todos in LocalStorage
         let todos;
         const todosInLocalStorage = api.getTodos();
@@ -20,35 +25,37 @@ class App extends Component {
         } else {
             todos = todosData;
         }
+        this.state.todos = todos;
 
         // Methods to pass as Props
         const onAdd = (todo) => {
             todos.unshift(todo);
             // update the component with the data
-            todoListComponent.update({ todos });
             api.saveTodos(todos);
-            filterComponent.update();
+            // TODO: only update if filter.radio = done
+            if(this.state.filter.radio === 'completed') {
+                this.resetFilter();
+            }
+            this.updateTodos();
         };
 
         const onRemove = (todoToRemove) => {
             const index = todos.indexOf(todoToRemove);
             todos.splice(index, 1);
-            todoListComponent.update({ todos });
             api.saveTodos(todos);
-
+            this.updateTodos();
         };
 
         const onDone = (todoToCheck) => {
             const index = todos.indexOf(todoToCheck);
             todos[index].completed = !todos[index].completed;
-            todoListComponent.update({ todos });
             api.saveTodos(todos);
-            filterComponent.update();
+            this.updateTodos();
         };
 
         const onFilter = (filter) => {
-            const filtered = filterTodos(filter, todos);
-            todoListComponent.update({ todos: filtered });
+            this.state.filter = filter;
+            this.updateTodos();
         };
 
         // Pull DOM elements
@@ -71,6 +78,7 @@ class App extends Component {
             todos,
             onFilter
         });
+        this.filterComponent = filterComponent;
         const filterComponentDOM = filterComponent.render();
         main.appendChild(filterComponentDOM);
         
@@ -80,11 +88,23 @@ class App extends Component {
             onRemove,
             onDone
         });
+        this.todoList = todoListComponent;
         const todoListComponentDOM = todoListComponent.render();
         main.appendChild(todoListComponentDOM);
 
         return dom;
     }
+
+    updateTodos() {
+        const filtered = filterTodos(this.state.filter, this.state.todos);
+        this.todoList.update({ todos: filtered });
+    }
+
+    resetFilter() {
+        this.filterComponent.update();
+        this.state.filter = defaultFilter;
+    }
+
     renderTemplate() {
         return /*html*/ `
             <div>

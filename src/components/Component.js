@@ -3,6 +3,7 @@ import htmlToDOM from '../html-to-DOM.js';
 class Component {
     constructor(props) {
         this.props = props;
+        this.state = {};
     }
     
     render() {
